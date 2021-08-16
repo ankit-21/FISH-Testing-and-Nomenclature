@@ -253,7 +253,7 @@ def nomenc():
 #             # iOS or Linux
         out_final = out.replace("\n", ";")
         return redirect(url_for('nomenc'))
-    return render_template('nom.html', out_final=out_final, Nom=Nom, TEST_NAME=TEST_NAME, add=add, fsd=fsd, splt=splt, iso3=iso3, iso5=iso5)
+    return render_template('nom.html', Nom=Nom, out_final=out_final, TEST_NAME=TEST_NAME, add=add, fsd=fsd, splt=splt, iso3=iso3, iso5=iso5)
 
 
 if __name__ == "__main__":
