@@ -246,12 +246,12 @@ def nomenc():
 
         # Obtaining macro for FISH report on WIKI
         out = str(df.to_csv(header=False, index=False))
-        if platform == "darwin":
-            # iOS
-            out_final = out.replace("\n", ";")
-        elif platform == "win32":
+        if platform == "win32":
             # Windows
             out_final = out.replace("\n", ";").replace("\r", "")
+        else:
+            # iOS or Linux
+            out_final = out.replace("\n", ";")
         return redirect(url_for('nomenc'))
     return render_template('nom.html', out_final=out_final, Nom=Nom, TEST_NAME=TEST_NAME, add=add, fsd=fsd, splt=splt, iso3=iso3, iso5=iso5)
 
