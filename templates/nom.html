@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FISH Test</title>
+    <style>
+    h2 {text-align: center;}
+  </style>
+</head>
+<body>
+<h2><u>Results</u></h2>
+<h3><u>Test</u>: {{ TEST_NAME }}</h3>
+<h3><u>ISCN Nomenclature</u>: {{ Nom | safe }}</h3>
+<h3><u>Nomenclature Breakdown</u></h3>
+<h3 style="color:orange">FUSED</h3>
+<h3 id="fused" style="font-weight:normal">{{ fsd | safe }}</h3>
+<hr>
+<h3>SPLIT</h3>
+<h3 style="font-weight:normal">{{ splt | safe }}</h3>
+<hr>
+<h3 style="color:red">ISOLATED 3'</h3>
+<h3 style="font-weight:normal">{{ iso3 | safe }}</h3>
+<hr>
+<h3 style="color:green">ISOLATED 5'</h3>
+<h3 style="font-weight:normal">{{ iso5 | safe }}</h3>
+<hr>
+<h3>Total Counted: {{ add }}</h3>
+<h3>FISH Result: {{ out_final }}</h3>
+</body>
+</html>
