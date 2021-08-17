@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>FISH Test</title>
+    <style>
+    h2 {text-align: center;}
+    h3 {text-align: center;}
+    div {text-align: center;}
+    .center {
+  margin-left: auto;
+  margin-right: auto;
+}
+  </style>
 </head>
 
 <h2>{{ TEST_NAME }}</h2>
@@ -12,7 +21,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <div id="data_container">
   <form action="/nom" method="POST">
-    <table id="table">
+    <table id="table" class="center">
       <thead>
         <tr><th>Red</th><th>Green</th><th>Yellow</th></tr>
       </thead>
