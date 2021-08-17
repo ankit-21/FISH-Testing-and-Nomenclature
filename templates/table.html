@@ -9,6 +9,7 @@
 <h3>Enter Count Below</h3>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <div id="data_container">
   <form action="/nom" method="POST">
     <table id="table">
@@ -71,8 +72,8 @@
         <button type="submit" id="submit_rows">Submit</button>
       <input type="reset" value="Clear">
   </form>
-  <button id="add_rows">+</button>
-<!--  <button id="add_50_rows">Add 10 rows</button>-->
+  <button id="add_rows">Add Rows</button>
+  <button id="del_rows">Delete Rows</button>
   <script>
           var c1 = 0;
           var c2 = 0;
@@ -106,6 +107,11 @@
                 }
             }, 0);
         });
+    });
+
+    $("#del_rows").click(function() {
+      // each click on the `-` button deletes a row to the table
+      document.getElementById("table").deleteRow(-1);
     });
 </script>
 
