@@ -59,9 +59,13 @@ def nomenc():
         df.Red = col_red
         df.Green = col_green
         df.Yellow = col_yellow
-        df['Red'] = df['Red'].astype(int)
-        df['Green'] = df['Green'].astype(int)
-        df['Yellow'] = df['Yellow'].astype(int)
+        
+        try:
+            df['Red'] = df['Red'].astype(int)
+            df['Green'] = df['Green'].astype(int)
+            df['Yellow'] = df['Yellow'].astype(int)
+        except ValueError:
+            return render_template("miss.html")
 
         # beginning the counter for cell counts of different bins
         split = 0
