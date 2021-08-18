@@ -78,9 +78,9 @@ def nomenc():
                 split += 1  # adding 1 to the split case
             elif df['Red'].loc[i] == 0 and df['Green'].loc[i] == 0 and df['Yellow'].loc[i] > 0:
                 fused += 1  # adding 1 to the fused case
-            elif df['Red'].loc[i] == 0 and df['Green'].loc[i] > 0 and df['Yellow'].loc[i] > 0:
+            elif df['Red'].loc[i] == 0 and df['Green'].loc[i] > 0 and df['Yellow'].loc[i] >= 0:
                 isolated5 += 1  # adding 1 to the isolated 5' case
-            elif df['Red'].loc[i] > 0 and df['Green'].loc[i] == 0 and df['Yellow'].loc[i] > 0:
+            elif df['Red'].loc[i] > 0 and df['Green'].loc[i] == 0 and df['Yellow'].loc[i] >= 0:
                 isolated3 += 1  # adding 1 to the isolated 3' case
 
         # total cells counted
@@ -119,7 +119,7 @@ def nomenc():
         # Calculating the avg copy number status of red column for iso 5'
         tot_red1 = []
         for i in range(df.shape[0]):
-            if df['Red'].loc[i] == 0 and df['Green'].loc[i] > 0 and df['Yellow'].loc[i] > 0:
+            if df['Red'].loc[i] == 0 and df['Green'].loc[i] > 0 and df['Yellow'].loc[i] >= 0:
                 tot_red1.append(df.Red.loc[i] + df.Yellow.loc[i])
         try:
             num3 = round(sum(tot_red1) / len(tot_red1))
@@ -129,7 +129,7 @@ def nomenc():
         # Calculating the avg copy number status of green column for iso 5'
         tot_green1 = []
         for i in range(df.shape[0]):
-            if df['Red'].loc[i] == 0 and df['Green'].loc[i] > 0 and df['Yellow'].loc[i] > 0:
+            if df['Red'].loc[i] == 0 and df['Green'].loc[i] > 0 and df['Yellow'].loc[i] >= 0:
                 tot_green1.append(df.Green.loc[i] + df.Yellow.loc[i])
         try:
             num4 = round(sum(tot_green1) / len(tot_green1))
@@ -139,7 +139,7 @@ def nomenc():
         # Calculating the avg copy number status of red column for iso 3'
         tot_red2 = []
         for i in range(df.shape[0]):
-            if df['Red'].loc[i] > 0 and df['Green'].loc[i] == 0 and df['Yellow'].loc[i] > 0:
+            if df['Red'].loc[i] > 0 and df['Green'].loc[i] == 0 and df['Yellow'].loc[i] >= 0:
                 tot_red2.append(df.Red.loc[i] + df.Yellow.loc[i])
         try:
             num5 = round(sum(tot_red2) / len(tot_red2))
@@ -149,7 +149,7 @@ def nomenc():
         # Calculating the avg copy number status of green column for iso 3'
         tot_green2 = []
         for i in range(df.shape[0]):
-            if df['Red'].loc[i] > 0 and df['Green'].loc[i] == 0 and df['Yellow'].loc[i] > 0:
+            if df['Red'].loc[i] > 0 and df['Green'].loc[i] == 0 and df['Yellow'].loc[i] >= 0:
                 tot_green2.append(df.Green.loc[i] + df.Yellow.loc[i])
         try:
             num6 = round(sum(tot_green2) / len(tot_green2))
