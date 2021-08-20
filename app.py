@@ -24,7 +24,7 @@ def tables():
     if request.method == "POST":
         TEST_NAME = request.form['TEST_NAME']
         session['TEST_NAME'] = TEST_NAME
-        if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'RET' or TEST_NAME == 'SYT' or TEST_NAME == 'BCL2' or TEST_NAME == 'BCL6' or TEST_NAME == 'CHOP' or TEST_NAME == 'EWSR1' or TEST_NAME == 'FKHR' or TEST_NAME == 'MYC':
+        if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'RET' or TEST_NAME == 'SYT' or TEST_NAME == 'BCL2' or TEST_NAME == 'BCL6' or TEST_NAME == 'CHOP' or TEST_NAME == 'EWSR1' or TEST_NAME == 'FKHR' or TEST_NAME == 'MYC' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK2':
             return render_template("table.html", TEST_NAME = TEST_NAME)
         else:
             return render_template("WIP.html")
