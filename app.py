@@ -24,10 +24,7 @@ def tables():
     if request.method == "POST":
         TEST_NAME = request.form['TEST_NAME']
         session['TEST_NAME'] = TEST_NAME
-        if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'RET' or TEST_NAME == 'SYT' or TEST_NAME == 'BCL2' or TEST_NAME == 'BCL6' or TEST_NAME == 'CHOP' or TEST_NAME == 'EWSR1' or TEST_NAME == 'FKHR' or TEST_NAME == 'MYC' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK2':
-            return render_template("table.html", TEST_NAME = TEST_NAME)
-        else:
-            return render_template("WIP.html")
+        return render_template("table.html", TEST_NAME = TEST_NAME)
 
 
 @app.route("/nom", methods=['GET', 'POST'])
@@ -41,6 +38,7 @@ def nomenc():
     global iso5
     global iso3
     global add
+    global cut
 
     # parsing the test name stored in sessions earlier
     TEST_NAME = session['TEST_NAME']
@@ -59,7 +57,7 @@ def nomenc():
         df.Red = col_red
         df.Green = col_green
         df.Yellow = col_yellow
-        
+
         try:
             df['Red'] = df['Red'].astype(int)
             df['Green'] = df['Green'].astype(int)
@@ -163,30 +161,60 @@ def nomenc():
         " Isolated 5': nuc ish (5' TEST_NAME x avg(G), 3' TEST_NAME x avg(R)) [iso 5'/total] "
         " Isolated 3': nuc ish (5' TEST_NAME x avg(G), 3' TEST_NAME x avg(R)) [iso 3'/total] "
 
-        if split > 0:
-            splt = " (" + TEST_NAME + " x " + str(
-                int(num1)) + ")" + " (5' " + TEST_NAME + " sep " + "3' " + TEST_NAME + " x " + str(
-                int(num2)) + ")" + " [" + "<b>" + str(split) + "</b>" + "/" + str(df.shape[0]) + "] "  # split
-        else:
-            splt = ""
+        if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3':
+            if split > 0:
+                splt = " (" + TEST_NAME + " x " + str(
+                    int(num1)) + ")" + " (5' " + TEST_NAME + " sep " + "3' " + TEST_NAME + " x " + str(
+                    int(num2)) + ")" + " [" + "<b>" + str(split) + "</b>" + "/" + str(df.shape[0]) + "] "  # split
+            else:
+                splt = ""
 
-        if fused > 0:
-            fsd = " (" + TEST_NAME + " x " + str(int(num1_f)) + ")" + " [" + "<b>" + str(fused) + "</b>" + "/" + str(
-                df.shape[0]) + "] "  # fused
-        else:
-            fsd = ""
+            if fused > 0:
+                fsd = " (" + TEST_NAME + " x " + str(int(num1_f)) + ")" + " [" + "<b>" + str(fused) + "</b>" + "/" + str(
+                    df.shape[0]) + "] "  # fused
+            else:
+                fsd = ""
 
-        if isolated5 > 0:
-            iso5 = " (5' " + TEST_NAME + " x " + str(int(num4)) + ', ' + "3' " + TEST_NAME + " x " + str(
-                int(num3)) + ")" + " [" + "<b>" + str(isolated5) + "</b>" + "/" + str(df.shape[0]) + "] "  # isolated 5'
-        else:
-            iso5 = ""
+            if isolated5 > 0:
+                iso5 = " (5' " + TEST_NAME + " x " + str(int(num4)) + ', ' + "3' " + TEST_NAME + " x " + str(
+                    int(num3)) + ")" + " [" + "<b>" + str(isolated5) + "</b>" + "/" + str(df.shape[0]) + "] "  # isolated 5'
+            else:
+                iso5 = ""
 
-        if isolated3 > 0:
-            iso3 = " (5' " + TEST_NAME + " x " + str(int(num6)) + ', ' + "3' " + TEST_NAME + " x " + str(
-                int(num5)) + ")" + " [" + "<b>" + str(isolated3) + "</b>" + "/" + str(df.shape[0]) + "] "  # isolated 3'
-        else:
-            iso3 = ""
+            if isolated3 > 0:
+                iso3 = " (5' " + TEST_NAME + " x " + str(int(num6)) + ', ' + "3' " + TEST_NAME + " x " + str(
+                    int(num5)) + ")" + " [" + "<b>" + str(isolated3) + "</b>" + "/" + str(df.shape[0]) + "] "  # isolated 3'
+            else:
+                iso3 = ""
+
+        if TEST_NAME == 'MYC' or TEST_NAME == 'BCL2' or TEST_NAME == 'BCL6' or TEST_NAME == 'RET' or TEST_NAME == 'EWSR1' or TEST_NAME == 'SYT':
+            if split > 0:
+                splt = " (" + TEST_NAME + " x " + str(
+                    int(num1)) + ")" + " (5' " + TEST_NAME + " sep " + "3' " + TEST_NAME + " x " + str(
+                    int(num2)) + ")" + " [" + "<b>" + str(split) + "</b>" + "/" + str(df.shape[0]) + "] "  # split
+            else:
+                splt = ""
+
+            if fused > 0:
+                fsd = " (" + TEST_NAME + " x " + str(int(num1_f)) + ")" + " [" + "<b>" + str(
+                    fused) + "</b>" + "/" + str(
+                    df.shape[0]) + "] "  # fused
+            else:
+                fsd = ""
+
+            if isolated5 > 0:
+                iso5 = " (5' " + TEST_NAME + " x " + str(int(num3)) + ', ' + "3' " + TEST_NAME + " x " + str(
+                    int(num4)) + ")" + " [" + "<b>" + str(isolated5) + "</b>" + "/" + str(
+                    df.shape[0]) + "] "  # isolated 5'
+            else:
+                iso5 = ""
+
+            if isolated3 > 0:
+                iso3 = " (5' " + TEST_NAME + " x " + str(int(num5)) + ', ' + "3' " + TEST_NAME + " x " + str(
+                    int(num6)) + ")" + " [" + "<b>" + str(isolated3) + "</b>" + "/" + str(
+                    df.shape[0]) + "] "  # isolated 3'
+            else:
+                iso3 = ""
 
         # storing the count as a key-value pair in the dictionary
         bin_dict = {'split': split, 'fused': fused, 'isolated5': isolated5, 'isolated3': isolated3}
@@ -248,6 +276,35 @@ def nomenc():
         else:
             Nom = Nom
 
+        # Cut-off for different tests
+        if TEST_NAME == 'ROS1':
+            cut = 'A ROS1 rearrangement is reported if more than 15% of cells show split signals.'
+        elif TEST_NAME == 'ALK':
+            cut = 'An ALK rearrangement is reported if more than 15% of cells show split signals.'
+        elif TEST_NAME == 'RET':
+            cut = 'A RET rearrangement is reported if more than 15% of cells show split signals.'
+        elif TEST_NAME == 'SYT':
+            cut = 'A SYT rearrangement is reported if more than 15% of cells show split signals.'
+        elif TEST_NAME == 'BCL2':
+            cut = 'A BCL2 rearrangement is reported if more than 15% of cells show split signals.'
+        elif TEST_NAME == 'BCL6':
+            cut = 'A BCL6 rearrangement is reported if more than 15% of cells show split signals.'
+        elif TEST_NAME == 'CHOP':
+            cut = 'A CHOP rearrangement is reported if more than 20% of cells show split signals.'
+        # elif TEST_NAME == 'EWSR1':
+        #     cut = 'A SYT rearrangement is reported if more than 15% of cells show split signals.'
+        elif TEST_NAME == 'FKHR':
+            cut = 'A FKHR rearrangement is reported if more than 15% of cells show split signals.'
+        elif TEST_NAME == 'MYC':
+            cut = 'A MYC rearrangement is reported if more than 15% of cells show split signals.'
+        elif TEST_NAME == 'NTRK1':
+            cut = 'A sample is classified as negative if <15% of nuclei (7 nuclei or fewer) are positive for gene rearrangement and classified as positive if >15% (8 nuclei or more) are positive. If more than 50 nuclei are enumerated, a sample is classified as positive if ≥15% of nuclei are positive.'
+        elif TEST_NAME == 'NTRK3':
+            cut = 'A sample is classified as negative if <15% of nuclei (7 nuclei or fewer) are positive for gene rearrangement and classified as positive if >15% (8 nuclei or more) are positive. If more than 50 nuclei are enumerated, a sample is classified as positive if ≥15% of nuclei are positive.'
+        else:
+            cut = ''
+
+
         # Obtaining macro for FISH report on WIKI
         out = str(df.to_csv(header=False, index=False))
         if platform == "win32":
@@ -257,7 +314,8 @@ def nomenc():
             # iOS or Linux
             out_final = out.replace("\n", ";")
         return redirect(url_for('nomenc'))
-    return render_template('nom.html', Nom=Nom, out_final=out_final, TEST_NAME=TEST_NAME, add=add, fsd=fsd, splt=splt, iso3=iso3, iso5=iso5)
+    return render_template('nom.html', Nom=Nom, out_final=out_final, TEST_NAME=TEST_NAME, add=add, fsd=fsd, splt=splt,
+                           iso3=iso3, iso5=iso5, cut=cut)
 
 
 if __name__ == "__main__":
