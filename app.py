@@ -291,18 +291,16 @@ def nomenc():
             cut = 'A BCL6 rearrangement is reported if more than 15% of cells show split signals.'
         elif TEST_NAME == 'CHOP':
             cut = 'A CHOP rearrangement is reported if more than 20% of cells show split signals.'
-        # elif TEST_NAME == 'EWSR1':
-        #     cut = 'A SYT rearrangement is reported if more than 15% of cells show split signals.'
+        elif TEST_NAME == 'EWSR1':
+            cut = 'An EWSR1 rearrangement is reported if more than 15% of cells show split signals.'
         elif TEST_NAME == 'FKHR':
             cut = 'A FKHR rearrangement is reported if more than 15% of cells show split signals.'
         elif TEST_NAME == 'MYC':
             cut = 'A MYC rearrangement is reported if more than 15% of cells show split signals.'
         elif TEST_NAME == 'NTRK1':
-            cut = 'A sample is classified as negative if <15% of nuclei (7 nuclei or fewer) are positive for gene rearrangement and classified as positive if >15% (8 nuclei or more) are positive. If more than 50 nuclei are enumerated, a sample is classified as positive if ≥15% of nuclei are positive.'
+            cut = 'An NTRK1 rearrangement is reported if more than 15% of cells show split signals.'
         elif TEST_NAME == 'NTRK3':
-            cut = 'A sample is classified as negative if <15% of nuclei (7 nuclei or fewer) are positive for gene rearrangement and classified as positive if >15% (8 nuclei or more) are positive. If more than 50 nuclei are enumerated, a sample is classified as positive if ≥15% of nuclei are positive.'
-        else:
-            cut = ''
+            cut = 'An NTRK3 rearrangement is reported if more than 15% of cells show split signals.'
 
 
         # Obtaining macro for FISH report on WIKI
