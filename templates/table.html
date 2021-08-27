@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!--  <link rel="icon" type="image/x-icon" href="static/favicon.ico" sizes="32x32" />-->
     <meta charset="UTF-8">
     <title>FISH Test</title>
   <style>
     h2 {text-align: center;}
     h3 {text-align: center;}
+    p {text-align: center;}
     div {text-align: center;}
     .center {
   margin-left: auto;
@@ -14,12 +16,18 @@
   </style>
 </head>
 
-<h2>{{ TEST_NAME }}</h2>
-<h3>Enter Count Below</h3>
+<h2>{{ TEST_NAME }} Break-Apart FISH Probe</h2>
+<h3>Enter Probe Count Below</h3>
+<p>Click on the 'Example Case' Button for Reference Count</p>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <div id="data_container">
+  <button id="add_rows">Add Rows</button>
+  <button id="del_rows">Delete Rows</button>
+  <button id="paste_example">Example Case</button>
   <form action="/nom" method="POST">
+    <button type="submit" id="submit_rows">Submit</button>
+      <input type="reset" value="Clear">
     <table id="table" class="center">
       <thead>
         <tr><th>Red</th><th>Green</th><th>Yellow</th></tr>
