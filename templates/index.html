@@ -5,23 +5,28 @@
     <title>FISH Test</title>
 <!--  <link rel="icon" href="static/favicon.ico" />-->
   <style>
-    h1 {text-align: center;}
-    h2 {text-align: center;}
-    h3 {text-align: center;}
+    h1 {text-align: center; color: white}
+    h2 {text-align: center; color: white}
+    .center {
+    margin: auto;
+    background: lightgray;
+    font-size:10px;
+    padding: 5px;
+    border: 2px solid lightgray;
+    width: 500px;
+    }
     p {text-align: center;}
     form {text-align: center;}
-    img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
+    body {background-image: url('/static/Background.png')}
   </style>
 </head>
 <body>
-<h1>Welcome to FISH Break-Apart Annotation Generator</h1>
-<h3>The interface is aiming to streamline the generation of an ISCN nomenclature/annotation for break-apart interphase FISH probes in oncology. After selecting the test, the interface will ask for atleast n=50 signal counts per nucleus and generate a complete ISCN annotation.</h3>
-<p>The interface is considered a decision support tool to simplify FISH Break-Apart annotation.</p>
-<h2>Select a FISH Probe</h2>
+<h1>Welcome to FISH Break-Apart ISCN Annotation Generator</h1>
+<div class="center">
+<p>The interface is aiming to simplify the generation of an ISCN compliant annotation for break-apart FISH probe counts obtained from interphase hybridization. After selecting the test, the interface will ask for signal counts from atleast n=50 nuclei. Using the ISCN nomenclature, the interface will transform these counts and generate the probe specific annotation.
+  <br><u>Note</u>: The interface is considered a decision support tool to simplify FISH Break-Apart annotation.</p>
+</div>
+  <h2>Select a FISH Probe</h2>
   <form action="/count" method="POST">
     <select id="Test Name" name = "TEST_NAME">
       <option value="ROS1">ROS1</option>
