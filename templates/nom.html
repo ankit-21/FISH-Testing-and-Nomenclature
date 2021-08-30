@@ -11,15 +11,43 @@
   margin-left: auto;
   margin-right: auto;
 }
+body {background-color: black; color:white}
   </style>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <body>
 <h2><u>Results</u></h2>
-<h3><u>Test</u>: {{ TEST_NAME }} Break-Apart FISH Probe</h3>
-<h3><u>ISCN Nomenclature</u></h3>
-<h3 id="nomen">{{ Nom | safe }}</h3><button onclick="copyToClipboard('#nomen')">Copy</button>
-<h3><u>Cutoff Value</u>: {{ cut }}</h3>
+<h3 style="font-weight:normal"><u>Test</u>: {{ TEST_NAME }} Break-Apart FISH Probe</h3>
+<h3 style="font-weight:normal"><u>ISCN Nomenclature</u></h3>
+<h3 id="nomen" style="font-weight:normal">{{ Nom | safe }}</h3><button onclick="copyToClipboard('#nomen')">Copy</button>
+<h3 style="font-weight:normal"><u>Cutoff Value</u>: {{ cut }}</h3>
+
+<h3 style="font-weight:normal"><u>Nomenclature Breakdown</u></h3>
+<h3 style="color:orange" id="fsd">FUSED</h3>
+<h3 id="fused" style="font-weight:normal">{{ fsd | safe }}</h3><button onclick="copyToClipboard('#fsd')">Copy</button>
+<hr>
+<h3>SPLIT</h3>
+<h3 style="font-weight:normal" id="splt">{{ splt | safe }}</h3><button onclick="copyToClipboard('#splt')">Copy</button>
+<hr>
+{% if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' %}
+<h3 style="color:red">ISOLATED 3'</h3>
+{% endif %}
+{% if TEST_NAME == 'MYC' or TEST_NAME == 'BCL2' or TEST_NAME == 'BCL6' or TEST_NAME == 'RET' or TEST_NAME == 'EWSR1' or TEST_NAME == 'SYT' %}
+<h3 style="color:green">ISOLATED 3'</h3>
+{% endif %}
+<h3 style="font-weight:normal" id="iso3">{{ iso3 | safe }}</h3><button onclick="copyToClipboard('#iso3')">Copy</button>
+<hr>
+{% if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' %}
+<h3 style="color:green">ISOLATED 5'</h3>
+{% endif %}
+{% if TEST_NAME == 'MYC' or TEST_NAME == 'BCL2' or TEST_NAME == 'BCL6' or TEST_NAME == 'RET' or TEST_NAME == 'EWSR1' or TEST_NAME == 'SYT' %}
+<h3 style="color:red">ISOLATED 5'</h3>
+{% endif %}
+<h3 style="font-weight:normal" id="iso5">{{ iso5 | safe }}</h3><button onclick="copyToClipboard('#iso5')">Copy</button>
+<hr>
+<h3 style="font-weight:normal"><u>Total Counted</u>: {{ add }}</h3>
+<h3 style="font-weight:normal"><u>FISH Result</u> (as string; format is R,G,Y;R,G,Y;..)</h3>
+<h3 id="fish" style="font-weight:normal">{{ out_final }}</h3><button onclick="copyToClipboard('#fish')">Copy</button>
 {% if TEST_NAME == 'ALK' %}
 <img src="{{url_for('static', filename='ALK.png')}}" />
 {% endif %}
@@ -47,31 +75,6 @@
 {% if TEST_NAME == 'SYT' %}
 <img src="{{url_for('static', filename='SYT.png')}}" />
 {% endif %}
-<h3><u>Nomenclature Breakdown</u></h3>
-<h3 style="color:orange">FUSED</h3>
-<h3 id="fsd" style="font-weight:normal">{{ fsd | safe }}</h3><button onclick="copyToClipboard('#fsd')">Copy</button>
-<hr>
-<h3>SPLIT</h3>
-<h3 style="font-weight:normal" id="splt">{{ splt | safe }}</h3><button onclick="copyToClipboard('#splt')">Copy</button>
-<hr>
-{% if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' %}
-<h3 style="color:red">ISOLATED 3'</h3>
-{% endif %}
-{% if TEST_NAME == 'MYC' or TEST_NAME == 'BCL2' or TEST_NAME == 'BCL6' or TEST_NAME == 'RET' or TEST_NAME == 'EWSR1' or TEST_NAME == 'SYT' %}
-<h3 style="color:green">ISOLATED 3'</h3>
-{% endif %}
-<h3 style="font-weight:normal" id="iso3">{{ iso3 | safe }}</h3><button onclick="copyToClipboard('#iso3')">Copy</button>
-<hr>
-{% if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' %}
-<h3 style="color:green">ISOLATED 5'</h3>
-{% endif %}
-{% if TEST_NAME == 'MYC' or TEST_NAME == 'BCL2' or TEST_NAME == 'BCL6' or TEST_NAME == 'RET' or TEST_NAME == 'EWSR1' or TEST_NAME == 'SYT' %}
-<h3 style="color:red">ISOLATED 5'</h3>
-{% endif %}
-<h3 style="font-weight:normal" id="iso5">{{ iso5 | safe }}</h3><button onclick="copyToClipboard('#iso5')">Copy</button>
-<hr>
-<h3>Total Counted: {{ add }}</h3>
-<h3>FISH Result: {{ out_final }}</h3>
 </body>
 <script>
 function copyToClipboard(element) {
