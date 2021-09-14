@@ -317,5 +317,5 @@ def nomenc():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
     app.secret_key = '\xc2}{\xe8n\xc0\x0f\xd6\xbd\xcf\x05\x1e\xf0_\xfaPo\xfdUw\xde\x08i\xbf'
