@@ -339,40 +339,40 @@ def nomenc():
         d = a_sorted_keys[3]
 
         if a == "split":
-            nom1 = '<p style="color:red;">' + splt + '</p>'
+            nom1 = splt 
         elif a == "fused":
-            nom1 = '<p style="color:orange;">' + fsd + '</p>'
+            nom1 = fsd
         elif a == "isolated5":
-            nom1 = '<p style="color:green;">' + iso5 + '</p>'
+            nom1 = iso5
         elif a == "isolated3":
-            nom1 = '<p style="color:blue;">' + iso3 + '</p>'
+            nom1 = iso3
 
         if b == "split":
-            nom2 = '<p style="color:red;">' + splt + '</p>'
+            nom2 = splt
         elif b == "fused":
-            nom2 = '<p style="color:orange;">' + fsd + '</p>'
+            nom2 = fsd
         elif b == "isolated5":
-            nom2 = '<p style="color:green;">' + iso5 + '</p>'
+            nom2 = iso5
         elif b == "isolated3":
-            nom2 = '<p style="color:blue;">' + iso3 + '</p>'
+            nom2 = iso3
 
         if c == "split":
-            nom3 = '<p style="color:red;">' + splt + '</p>'
+            nom3 = splt
         elif c == "fused":
-            nom3 = '<p style="color:orange;">' + fsd + '</p>'
+            nom3 = fsd
         elif c == "isolated5":
-            nom3 = '<p style="color:green;">' + iso5 + '</p>'
+            nom3 = iso5
         elif c == "isolated3":
-            nom3 = '<p style="color:blue;">' + iso3 + '</p>'
+            nom3 = iso3
 
         if d == "split":
-            nom4 = '<p style="color:red;">' + splt + '</p>'
+            nom4 = splt
         elif d == "fused":
-            nom4 = '<p style="color:orange;">' + fsd + '</p>'
+            nom4 = fsd
         elif d == "isolated5":
-            nom4 = '<p style="color:green;">' + iso5 + '</p>'
+            nom4 = iso5
         elif d == "isolated3":
-            nom4 = '<p style="color:blue;">' + iso3 + '</p>'
+            nom4 = iso3
 
         # adding all the nomenclature strings together
         nom = "nuc ish"
