@@ -12,187 +12,72 @@
   margin-right: auto;
 }
 body {background-color: black; color: white; line-height: 15px}
+.space {
+  line-height: 15px;
+  margin:0;
+  padding:0;
+
   </style>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 <body>
 <h2><u>Results</u></h2>
 <h3 style="font-weight:normal"><u>Test</u>: {{ TEST_NAME }} Break-Apart FISH Probe</h3>
 <h3 style="font-weight:normal"><u>Total Counted</u>: {{ add }}</h3>
-<h3 style="font-weight:normal"><u>ISCN Nomenclature</u></h3>
+<h3 style="font-weight:normal;line-height: 15px" class="space"><u>ISCN Nomenclature</u></h3>
 {% if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == 'MYC' or TEST_NAME == 'BCL2' or TEST_NAME == 'BCL6' or TEST_NAME == 'RET' or TEST_NAME == 'EWSR1' or TEST_NAME == 'SYT' %}
-<h3 id="nomen" style="font-weight:normal">{{ Nom | safe }}</h3><button onclick="copyToClipboard('#nomen')">Copy</button>
+<h3 id="nomen" style="font-weight:normal" class="space">{{ Nom | safe }}</h3><button onclick="copyToClipboard('#nomen')">Copy</button>
 {% endif %}
+<div class="chart" id="bargraph" style="position:absolute;right:50px"></div>
 {% if TEST_NAME == 'GENE_RED' or TEST_NAME == 'GENE_GREEN' %}
-<h3 id="nomen" style="font-weight:normal" contenteditable="true">{{ Nom | safe }}</h3><button onclick="copyToClipboard('#nomen')">Copy</button>
+<h3 id="nomen" style="font-weight:normal;line-height: 15px" contenteditable="true" class="space">{{ Nom | safe }}</h3><button onclick="copyToClipboard('#nomen')">Copy</button>
 {% endif %}
-<h3 style="font-weight:normal"><u>Nomenclature Breakdown</u></h3>
-<h3 style="color:blue">NON-FUSED {{ non_fused_perc }}%</h3>
-<h3 id="non-fused" style="font-weight:normal">Non-Fused Count: {{ non_fused }}/{{ add }}</h3>
-<hr>
+<h3 style="font-weight:normal;margin:1"><u>Nomenclature Breakdown</u></h3>
 {% if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == 'GENE_GREEN' %}
-{% if nom1 == fsd %}
-<h3 style="color:orange">FUSED {{ fused_perc }}%</h3>
-<h3 id="fused" style="font-weight:normal">{{ nom1 | safe }}</h3>
+<h3 style="display:inline-block;color:orange" class="space">FUSED</h3>
+<h3 style="display:inline-block">{{ fused_perc }}%</h3>
+<h3 id="fused" style="font-weight:normal;line-height: 15px" class="space">{{ fsd | safe }}</h3>
 <hr>
-{% endif %}
-{% if nom1 == splt %}
-<h3>SPLIT {{ split_perc }}%</h3>
-<h3 style="font-weight:normal" id="splt">{{ nom1 | safe }}</h3>
+<h3 style="display:inline-block;color:blue" class="space">NON-FUSED </h3>
+    <h3 style="display:inline-block">{{ non_fused_perc }}%</h3>
+<h3 id="non-fused" style="font-weight:normal" class="space">Non-Fused Count: {{ non_fused }}/{{ add }}</h3>
+<!--<hr>-->
+<h3 style="display:inline-block;margin-left:40px" class="space">SPLIT</h3>
+<h3 style="display:inline-block">{{ split_perc }}%</h3>
+<h3 style="font-weight:normal;margin-left:40px" class="space" id="splt">{{ splt | safe }}</h3>
+<!--<hr>-->
+<h3 style="display:inline-block;color:green;margin-left:40px" class="space">ISOLATED 5'</h3>
+<h3 style="display:inline-block">{{ iso5_perc }}%</h3>
+<h3 style="font-weight:normal;margin-left:40px" class="space" id="iso5">{{ iso5 | safe }}</h3>
+<!--<hr>-->
+<h3 style="display:inline-block;color:red;margin-left:40px" class="space">ISOLATED 3'</h3>
+<h3 style="display:inline-block">{{ iso3_perc }}%</h3>
+<h3 style="font-weight:normal;margin-left:40px" class="space" id="iso3">{{ iso3 | safe }}</h3>
 <hr>
-{% endif %}
-{% if nom1 == iso5 %}
-<h3 style="color:green">ISOLATED 5' {{ iso5_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso5">{{ nom1 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom1 == iso3 %}
-<h3 style="color:red">ISOLATED 3' {{ iso3_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso3">{{ nom1 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom2 == fsd %}
-<h3 style="color:orange">FUSED {{ fused_perc }}%</h3>
-<h3 id="fused" style="font-weight:normal">{{ nom2 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom2 == splt %}
-<h3>SPLIT {{ split_perc }}%</h3>
-<h3 style="font-weight:normal" id="splt">{{ nom2 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom2 == iso5 %}
-<h3 style="color:green">ISOLATED 5' {{ iso5_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso5">{{ nom2 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom2 == iso3 %}
-<h3 style="color:red">ISOLATED 3' {{ iso3_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso3">{{ nom2 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom3 == fsd %}
-<h3 style="color:orange">FUSED {{ fused_perc }}%</h3>
-<h3 id="fused" style="font-weight:normal">{{ nom3 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom3 == splt %}
-<h3>SPLIT {{ split_perc }}%</h3>
-<h3 style="font-weight:normal" id="splt">{{ nom3 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom3 == iso5 %}
-<h3 style="color:green">ISOLATED 5' {{ iso5_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso5">{{ nom3 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom3 == iso3 %}
-<h3 style="color:red">ISOLATED 3' {{ iso3_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso3">{{ nom3 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom4 == fsd %}
-<h3 style="color:orange">FUSED {{ fused_perc }}%</h3>
-<h3 id="fused" style="font-weight:normal">{{ nom4 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom4 == splt %}
-<h3>SPLIT {{ split_perc }}%</h3>
-<h3 style="font-weight:normal" id="splt">{{ nom4 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom4 == iso5 %}
-<h3 style="color:green">ISOLATED 5' {{ iso5_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso5">{{ nom4 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom4 == iso3 %}
-<h3 style="color:red">ISOLATED 3' {{ iso3_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso3">{{ nom4 | safe }}</h3>
-<hr>
-{% endif %}
 {% endif %}
 {% if TEST_NAME == 'MYC' or TEST_NAME == 'BCL2' or TEST_NAME == 'BCL6' or TEST_NAME == 'RET' or TEST_NAME == 'EWSR1' or TEST_NAME == 'SYT' or TEST_NAME == 'GENE_RED' %}
-{% if nom1 == fsd %}
-<h3 style="color:orange">FUSED {{ fused_perc }}%</h3>
-<h3 id="fused" style="font-weight:normal">{{ nom1 | safe }}</h3>
+<h3 style="display:inline-block;color:orange" class="space">FUSED</h3>
+<h3 style="display:inline-block">{{ fused_perc }}%</h3>
+<h3 id="fused" style="font-weight:normal" class="space">{{ fsd | safe }}</h3>
 <hr>
-{% endif %}
-{% if nom1 == splt %}
-<h3>SPLIT {{ split_perc }}%</h3>
-<h3 style="font-weight:normal" id="splt">{{ nom1 | safe }}</h3>
+<h3 style="display:inline-block;color:blue" class="space">NON-FUSED </h3>
+    <h3 style="display:inline-block">{{ non_fused_perc }}%</h3>
+<h3 id="non-fused" style="font-weight:normal" class="space">Non-Fused Count: {{ non_fused }}/{{ add }}</h3>
+<!--<hr>-->
+<h3 style="display:inline-block;margin-left:40px" class="space">SPLIT</h3>
+<h3 style="display:inline-block">{{ split_perc }}%</h3>
+<h3 style="font-weight:normal;margin-left:40px" class="space" id="splt">{{ splt | safe }}</h3>
+<!--<hr>-->
+<h3 style="display:inline-block;color:red;margin-left:40px" class="space">ISOLATED 5'</h3>
+<h3 style="display:inline-block">{{ iso5_perc }}%</h3>
+<h3 style="font-weight:normal;margin-left:40px" class="space" id="iso5">{{ iso5 | safe }}</h3>
+<!--<hr>-->
+<h3 style="display:inline-block;color:green;margin-left:40px" class="space">ISOLATED 3'</h3>
+<h3 style="display:inline-block">{{ iso3_perc }}%</h3>
+<h3 style="font-weight:normal;margin-left:40px" class="space" id="iso3">{{ iso3 | safe }}</h3>
 <hr>
-{% endif %}
-{% if nom1 == iso5 %}
-<h3 style="color:red">ISOLATED 5' {{ iso5_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso5">{{ nom1 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom1 == iso3 %}
-<h3 style="color:green">ISOLATED 3' {{ iso3_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso3">{{ nom1 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom2 == fsd %}
-<h3 style="color:orange">FUSED {{ fused_perc }}%</h3>
-<h3 id="fused" style="font-weight:normal">{{ nom2 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom2 == splt %}
-<h3>SPLIT {{ split_perc }}%</h3>
-<h3 style="font-weight:normal" id="splt">{{ nom2 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom2 == iso5 %}
-<h3 style="color:red">ISOLATED 5' {{ iso5_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso5">{{ nom2 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom2 == iso3 %}
-<h3 style="color:green">ISOLATED 3' {{ iso3_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso3">{{ nom2 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom3 == fsd %}
-<h3 style="color:orange">FUSED {{ fused_perc }}%</h3>
-<h3 id="fused" style="font-weight:normal">{{ nom3 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom3 == splt %}
-<h3>SPLIT {{ split_perc }}%</h3>
-<h3 style="font-weight:normal" id="splt">{{ nom3 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom3 == iso5 %}
-<h3 style="color:red">ISOLATED 5' {{ iso5_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso5">{{ nom3 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom3 == iso3 %}
-<h3 style="color:green">ISOLATED 3' {{ iso3_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso3">{{ nom3 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom4 == fsd %}
-<h3 style="color:orange">FUSED {{ fused_perc }}%</h3>
-<h3 id="fused" style="font-weight:normal">{{ nom4 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom4 == splt %}
-<h3>SPLIT {{ split_perc }}%</h3>
-<h3 style="font-weight:normal" id="splt">{{ nom4 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom4 == iso5 %}
-<h3 style="color:red">ISOLATED 5' {{ iso5_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso5">{{ nom4 | safe }}</h3>
-<hr>
-{% endif %}
-{% if nom4 == iso3 %}
-<h3 style="color:green">ISOLATED 3' {{ iso3_perc }}%</h3>
-<h3 style="font-weight:normal" id="iso3">{{ nom4 | safe }}</h3>
-<hr>
-{% endif %}
 {% endif %}
 <h3 style="font-weight:normal"><u>FISH Result</u> (as string; format is R,G,Y;R,G,Y;..)</h3>
 <h3 id="fish" style="font-weight:normal">{{ out_final }}</h3><button onclick="copyToClipboard('#fish')">Copy</button>
@@ -233,5 +118,8 @@ function copyToClipboard(element) {
   document.execCommand("copy");
   $temp.remove();
 }
+
+var graphs = {{ plotly_plot | safe }};
+        Plotly.plot('bargraph',graphs,{});
 </script>
 </html>
