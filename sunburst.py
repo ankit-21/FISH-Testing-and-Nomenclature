@@ -14,7 +14,7 @@ def fish_sunburst(
             cut =  "A ROS1 rearrangement is reported if more than 15% of cells show split signals."
             ):
     '''
-    Takes test name and FISH counts to produce a Sankey diagram.
+    Takes test name and FISH counts to produce a sunburst diagram.
     Default values are for example case
     '''
     # set correct 3'/5' colors
@@ -32,7 +32,7 @@ def fish_sunburst(
     non_fused = split + isolated5 + isolated3
     non_fused_perc = round(100 * (non_fused / add))
 
-    # set node labels - unfortunately cannot add line breaks - it's a known bug
+    # set ids, labels, parents
     ids = ["Total Counted", 
             "Non-Fused", 
             "Fused", 
@@ -56,10 +56,10 @@ def fish_sunburst(
     
     values = [add, non_fused, fused, split, isolated3, isolated5]
     
-    # set colors for nodes
+    # set colors for sections
     colors = ["white", "blue", "orange", "black", iso3_color, iso5_color]
 
-    #  %% Draw the Sankey
+    #  %% Draw the sunburst
     fig = go.Figure(go.Sunburst(
         ids = ids,
         labels = labels,
