@@ -30,10 +30,10 @@ body {background-color: black; color: white; line-height: 15px}
 {% if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == 'MYC' or TEST_NAME == 'BCL2' or TEST_NAME == 'BCL6' or TEST_NAME == 'RET' or TEST_NAME == 'EWSR1' or TEST_NAME == 'SYT' %}
 <h3 id="nomen" style="font-weight:normal" class="space">{{ Nom | safe }}</h3><button onclick="copyToClipboard('#nomen')">Copy</button>
 {% endif %}
-<div class="chart" id="bargraph" style="position:absolute;right:50px"></div>
 {% if TEST_NAME == 'GENE_RED' or TEST_NAME == 'GENE_GREEN' %}
 <h3 id="nomen" style="font-weight:normal;line-height: 15px" contenteditable="true" class="space">{{ Nom | safe }}</h3><button onclick="copyToClipboard('#nomen')">Copy</button>
 {% endif %}
+<div class="chart" id="bargraph" style="position:absolute;right:50px"></div>
 <h3 style="font-weight:normal;margin:1"><u>Nomenclature Breakdown</u></h3>
 {% if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == 'GENE_GREEN' %}
 <h3 style="display:inline-block;color:orange" class="space">FUSED</h3>
