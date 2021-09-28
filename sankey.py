@@ -42,7 +42,23 @@ def fish_sankey(
     
     # set colors for nodes
     color = ["black", "blue", "orange", "white", iso3_color, iso5_color]
-
+    x = [0.01, .5, .5, .99,.99,.99]
+    y = [.01, .01, .01, .01, .01 , .01] 
+    source = [0, 0, 1, 1, 1] # indices correspond to labels above
+    target = [1, 2, 3, 4, 5]
+    
+    input_list = [labels, color, x, y, source, target]
+    
+    counts = [fused,
+            split,
+            isolated3,
+            isolated5]
+    
+    for i, count in enumerate(counts):
+        if count == 0:
+            for input in input_list:
+                del input[i+1]
+        
     #  %% Draw the Sankey
     fig = go.Figure(data=[go.Sankey(
         valueformat = ".0f",
@@ -52,13 +68,14 @@ def fish_sankey(
         thickness = 20,
         line = dict(color = "black", width = 0.5),
         label = labels,
-        x = [0.01, .5, .5, .99,.99,.99],
-        y = [.01, .01, .9, .01, .01 , .01], 
-        color = color
+        color = color,
+        x=x,
+        y=y,
+        source=source,
+        target=target,
         ),
         link = dict(
-        source = [0, 0, 1, 1, 1], # indices correspond to labels above
-        target = [1, 2, 3, 4, 5],
+
         value = [non_fused, fused, split, isolated3, isolated5]
     ))])
 
