@@ -11,7 +11,7 @@
   margin-left: auto;
   margin-right: auto;
 }
-body {background-color: black; color: white; line-height: 15px}
+body {background-color: black; color: gray; line-height: 15px}
 .space {
   line-height: 15px;
   margin:0;
@@ -38,45 +38,45 @@ body {background-color: black; color: white; line-height: 15px}
 {% if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == 'GENE_GREEN' %}
 <h3 style="display:inline-block;color:orange" class="space">FUSED</h3>
 <h3 style="display:inline-block">{{ fused_perc }}%</h3>
-<h3 id="fused" style="font-weight:normal;line-height: 15px" class="space">{{ fsd | safe }}</h3>
+<h3 id="fused" style="font-weight:normal;line-height: 15px;color:orange" class="space">{{ fsd | safe }}</h3>
 <hr>
 <h3 style="display:inline-block;color:blue" class="space">NON-FUSED </h3>
     <h3 style="display:inline-block">{{ non_fused_perc }}%</h3>
 <h3 id="non-fused" style="font-weight:normal" class="space">Non-Fused Count: {{ non_fused }}/{{ add }}</h3>
 <!--<hr>-->
-<h3 style="display:inline-block;margin-left:40px" class="space">SPLIT</h3>
+<h3 style="display:inline-block;margin-left:40px;color:white" class="space">SPLIT</h3>
 <h3 style="display:inline-block">{{ split_perc }}%</h3>
-<h3 style="font-weight:normal;margin-left:40px" class="space" id="splt">{{ splt | safe }}</h3>
+<h3 style="font-weight:normal;margin-left:40px;color:white" class="space" id="splt">{{ splt | safe }}</h3>
 <!--<hr>-->
 <h3 style="display:inline-block;color:green;margin-left:40px" class="space">ISOLATED 5'</h3>
 <h3 style="display:inline-block">{{ iso5_perc }}%</h3>
-<h3 style="font-weight:normal;margin-left:40px" class="space" id="iso5">{{ iso5 | safe }}</h3>
+<h3 style="font-weight:normal;margin-left:40px;color:green" class="space" id="iso5">{{ iso5 | safe }}</h3>
 <!--<hr>-->
 <h3 style="display:inline-block;color:red;margin-left:40px" class="space">ISOLATED 3'</h3>
 <h3 style="display:inline-block">{{ iso3_perc }}%</h3>
-<h3 style="font-weight:normal;margin-left:40px" class="space" id="iso3">{{ iso3 | safe }}</h3>
+<h3 style="font-weight:normal;margin-left:40px;color:red" class="space" id="iso3">{{ iso3 | safe }}</h3>
 <hr>
 {% endif %}
 {% if TEST_NAME == 'MYC' or TEST_NAME == 'BCL2' or TEST_NAME == 'BCL6' or TEST_NAME == 'RET' or TEST_NAME == 'EWSR1' or TEST_NAME == 'SYT' or TEST_NAME == 'GENE_RED' %}
 <h3 style="display:inline-block;color:orange" class="space">FUSED</h3>
 <h3 style="display:inline-block">{{ fused_perc }}%</h3>
-<h3 id="fused" style="font-weight:normal" class="space">{{ fsd | safe }}</h3>
+<h3 id="fused" style="font-weight:normal;color:orange" class="space">{{ fsd | safe }}</h3>
 <hr>
 <h3 style="display:inline-block;color:blue" class="space">NON-FUSED </h3>
     <h3 style="display:inline-block">{{ non_fused_perc }}%</h3>
 <h3 id="non-fused" style="font-weight:normal" class="space">Non-Fused Count: {{ non_fused }}/{{ add }}</h3>
 <!--<hr>-->
-<h3 style="display:inline-block;margin-left:40px" class="space">SPLIT</h3>
+<h3 style="display:inline-block;margin-left:40px;color:white" class="space">SPLIT</h3>
 <h3 style="display:inline-block">{{ split_perc }}%</h3>
-<h3 style="font-weight:normal;margin-left:40px" class="space" id="splt">{{ splt | safe }}</h3>
+<h3 style="font-weight:normal;margin-left:40px;color:white" class="space" id="splt">{{ splt | safe }}</h3>
 <!--<hr>-->
 <h3 style="display:inline-block;color:red;margin-left:40px" class="space">ISOLATED 5'</h3>
 <h3 style="display:inline-block">{{ iso5_perc }}%</h3>
-<h3 style="font-weight:normal;margin-left:40px" class="space" id="iso5">{{ iso5 | safe }}</h3>
+<h3 style="font-weight:normal;margin-left:40px;color:red" class="space" id="iso5">{{ iso5 | safe }}</h3>
 <!--<hr>-->
 <h3 style="display:inline-block;color:green;margin-left:40px" class="space">ISOLATED 3'</h3>
 <h3 style="display:inline-block">{{ iso3_perc }}%</h3>
-<h3 style="font-weight:normal;margin-left:40px" class="space" id="iso3">{{ iso3 | safe }}</h3>
+<h3 style="font-weight:normal;margin-left:40px;color:green" class="space" id="iso3">{{ iso3 | safe }}</h3>
 <hr>
 {% endif %}
 <h3 style="font-weight:normal"><u>FISH Result</u> (as string; format is R,G,Y;R,G,Y;..)</h3>
