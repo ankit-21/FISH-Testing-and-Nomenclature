@@ -43,15 +43,34 @@ def fish_sankey(
     non_fused_perc = round(100 * (non_fused / add))
 
     # set node labels - unfortunately cannot add line breaks - it's a known bug
-    labels = [f"Total Counted: {add}",
-              f"Non-Fused: {non_fused}/{add} ({non_fused_perc}%)",
-              f"Fused: {fused}/{add} ({fused_perc}%)",
-              f"Split: {split}/{add} ({split_perc}%)",
-              f"Isolated 3': {isolated3}/{add} ({iso3_perc}%)",
-              f"Isolated 5': {isolated5}/{add} ({iso5_perc}%)"]
+    labels = [f"{add}",
+              f"{non_fused}/{add} ({non_fused_perc}%)",
+              f"{fused}/{add} ({fused_perc}%)",
+              f"{split}/{add} ({split_perc}%)",
+              f"{isolated3}/{add} ({iso3_perc}%)",
+              f"{isolated5}/{add} ({iso5_perc}%)"]
 
     # set colors for nodes
     color = ["black", "blue", "orange", "white", iso3_color, iso5_color]
+
+    # x = [0.01, .5, .5, .99, .99, .99]
+    # y = [.01, .01, .01, .01, .01, .01]
+    # source = [0, 0, 1, 1, 1]  # indices correspond to labels above
+    # target = [1, 2, 3, 4, 5]
+    #
+    # input_list = [labels, color, x, y, source, target]
+    #
+    # counts = [fused,
+    #           split,
+    #           isolated3,
+    #           isolated5]
+    #
+    # for i, count in enumerate(counts):
+    #     if count == 0:
+    #         for input in input_list:
+    #             del input[i]
+    #     else:
+    #         pass
 
     #  %% Draw the Sankey
     fig = go.Figure(data=[go.Sankey(
@@ -63,17 +82,16 @@ def fish_sankey(
             line=dict(color="black", width=0.5),
             label=labels,
             x=[0.01, .5, .5, .99, .99, .99],
-            y=[.01, .01, .9, .01, .01, .01],
+            y=[.01, .01, .01, .01, .01, .01],
             color=color
         ),
-        link=dict(
-            source=[0, 0, 1, 1, 1],  # indices correspond to labels above
-            target=[1, 2, 3, 4, 5],
-            value=[non_fused, fused, split, isolated3, isolated5]
+        link=dict(source=[0, 0, 1, 1, 1],
+        target=[1, 2, 3, 4, 5],
+        value=[non_fused, fused, split, isolated3, isolated5]
         ))])
 
     fig.update_layout(
-        font_size=8,
+        font_size=12,
         autosize=False,
         width=600,
         height=400,
@@ -421,7 +439,7 @@ def nomenc():
         d = a_sorted_keys[3]
 
         if a == "split":
-            nom1 = '<p style="display:inline-block">' + splt + "</p>"
+            nom1 = '<p style="display:inline-block;color:white">' + splt + "</p>"
         elif a == "fused":
             nom1 = '<p style="display:inline-block;color:orange">' + fsd + "</p>"
         elif a == "isolated5":
@@ -436,7 +454,7 @@ def nomenc():
                 nom1 = '<p style="display:inline-block;color:green">' + iso3 + "</p>"
 
         if b == "split":
-            nom2 = '<p style="display:inline-block">' + splt + "</p>"
+            nom2 = '<p style="display:inline-block;color:white">' + splt + "</p>"
         elif b == "fused":
             nom2 = '<p style="display:inline-block;color:orange">' + fsd + "</p>"
         elif b == "isolated5":
@@ -451,7 +469,7 @@ def nomenc():
                 nom2 = '<p style="display:inline-block;color:green">' + iso3 + "</p>"
 
         if c == "split":
-            nom3 = '<p style="display:inline-block">' + splt + "</p>"
+            nom3 = '<p style="display:inline-block;color:white">' + splt + "</p>"
         elif c == "fused":
             nom3 = '<p style="display:inline-block;color:orange">' + fsd + "</p>"
         elif c == "isolated5":
@@ -466,7 +484,7 @@ def nomenc():
                 nom3 = '<p style="display:inline-block;color:green">' + iso3 + "</p>"
 
         if d == "split":
-            nom4 = '<p style="display:inline-block">' + splt + "</p>"
+            nom4 = '<p style="display:inline-block;color:white">' + splt + "</p>"
         elif d == "fused":
             nom4 = '<p style="display:inline-block;color:orange">' + fsd + "</p>"
         elif d == "isolated5":
@@ -482,13 +500,13 @@ def nomenc():
 
         # adding all the nomenclature strings together and removing extra "/" for unused nom strings
         nom = "nuc ish"
-        if nom1 == '<p style="display:inline-block;color:red"></p>' or nom1 == '<p style="display:inline-block;color:green"></p>' or nom1 == '<p style="display:inline-block;color:orange"></p>' or nom1 == '<p style="display:inline-block"></p>':
+        if nom1 == '<p style="display:inline-block;color:red"></p>' or nom1 == '<p style="display:inline-block;color:green"></p>' or nom1 == '<p style="display:inline-block;color:orange"></p>' or nom1 == '<p style="display:inline-block;color:white"></p>':
             Nom = nom
-        elif nom2 == '<p style="display:inline-block;color:red"></p>' or nom2 == '<p style="display:inline-block;color:green"></p>' or nom2 == '<p style="display:inline-block;color:orange"></p>' or nom2 == '<p style="display:inline-block"></p>':
+        elif nom2 == '<p style="display:inline-block;color:red"></p>' or nom2 == '<p style="display:inline-block;color:green"></p>' or nom2 == '<p style="display:inline-block;color:orange"></p>' or nom2 == '<p style="display:inline-block;color:white"></p>':
             Nom = nom + " " + nom1
-        elif nom3 == '<p style="display:inline-block;color:red"></p>' or nom3 == '<p style="display:inline-block;color:green"></p>' or nom3 == '<p style="display:inline-block;color:orange"></p>' or nom3 == '<p style="display:inline-block"></p>':
+        elif nom3 == '<p style="display:inline-block;color:red"></p>' or nom3 == '<p style="display:inline-block;color:green"></p>' or nom3 == '<p style="display:inline-block;color:orange"></p>' or nom3 == '<p style="display:inline-block;color:white"></p>':
             Nom = nom + " " + nom1 + " / " + nom2
-        elif nom4 == '<p style="display:inline-block;color:red"></p>' or nom4 == '<p style="display:inline-block;color:green"></p>' or nom4 == '<p style="display:inline-block;color:orange"></p>' or nom4 == '<p style="display:inline-block"></p>':
+        elif nom4 == '<p style="display:inline-block;color:red"></p>' or nom4 == '<p style="display:inline-block;color:green"></p>' or nom4 == '<p style="display:inline-block;color:orange"></p>' or nom4 == '<p style="display:inline-block;color:white"></p>':
             Nom = nom + " " + nom1 + " / " + nom2 + " / " + nom3
         else:
             Nom = nom + " " + nom1 + " / " + nom2 + " / " + nom3 + " / " + nom4
