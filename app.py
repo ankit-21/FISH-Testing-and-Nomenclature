@@ -515,7 +515,7 @@ def nomenc():
         cut_off = ['ROS1', 'ALK', 'RET', 'SYT', 'BCL2', 'BCL6', 'EWSR1', 'FKHR', 'MYC', 'NTRK1', 'NTRK3', 'GENE_RED', 'GENE_GREEN']
 
         if TEST_NAME in cut_off:
-            cut = 'A ROS1 rearrangement is reported if more than 15% of cells show split signals.'
+            cut = 'A ' + TEST_NAME + ' rearrangement is reported if more than 15% of cells show split signals.'
         else:
             cut = 'A CHOP rearrangement is reported if more than 20% of cells show split signals.'
 
