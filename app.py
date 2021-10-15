@@ -53,6 +53,7 @@ def fish_sankey(
     # set colors for nodes
     color = ["black", "blue", "orange", "white", iso3_color, iso5_color]
 
+
     #  %% Draw the Sankey
     fig = go.Figure(data=[go.Sankey(
         valueformat=".0f",
@@ -127,19 +128,21 @@ def nomenc():
     global non_fused
     global non_fused_perc
     global plotly_plot
+    global case_number
 
     # parsing the test name stored in sessions earlier
     TEST_NAME = session['TEST_NAME']
 
     if request.method == "POST":
+        case_number = request.form['case_number']
         cols = ['Red', 'Green', 'Yellow']
         rows = []
         for i in request.form:
             row = request.form[i]
             rows.append(row)
-        col_red = rows[::3]
-        col_green = rows[1::3]
-        col_yellow = rows[2::3]
+        col_red = rows[1::3]
+        col_green = rows[2::3]
+        col_yellow = rows[3::3]
 
         # creating an empty dataframe and populating it with values obtained from the user in table.html
         df = pd.DataFrame(columns=cols)
@@ -516,7 +519,8 @@ def nomenc():
     return render_template('nom.html', Nom=Nom, out_final=out_final, TEST_NAME=TEST_NAME, add=add, nom1=nom1, nom2=nom2,
                            nom3=nom3, nom4=nom4, cut=cut, fused_perc=fused_perc, split_perc=split_perc,
                            iso5_perc=iso5_perc, iso3_perc=iso3_perc, non_fused_perc=non_fused_perc,
-                           non_fused=non_fused, fsd=fsd, splt=splt, iso3=iso3, iso5=iso5, plotly_plot=plotly_plot)
+                           non_fused=non_fused, fsd=fsd, splt=splt, iso3=iso3, iso5=iso5, plotly_plot=plotly_plot,
+                           case_number=case_number)
 
 
 if __name__ == "__main__":
