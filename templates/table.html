@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <link rel="icon" href="static/favicon.ico" />
+<link rel="icon" href="static/favicon.ico" />
     <meta charset="UTF-8">
     <title>FISHING</title>
   <style>
@@ -27,8 +27,9 @@ body {background-color: black; color:white}
   <button id="del_rows1">Delete Rows</button>
   <button id="paste_example1">Example Case</button>
   <form action="/nom" method="POST">
-    <button type="submit" id="submit_rows">Submit</button>
-      <input type="reset" value="Clear">
+    <button type="submit" id="submit_rows" class="center">Submit</button>
+      <input type="reset" value="Clear" class="center">
+    <p>Enter Case Number Here (Optional) <input type="text" class="center" id="case_number" name="case_number"></p>
     <table id="table" class="center">
       <thead>
         <tr><th>Red</th><th>Green</th><th>Yellow</th></tr>
@@ -44,7 +45,7 @@ body {background-color: black; color:white}
         <tr><td style="text-align: right">8 <input name="r8c1" type="text" id="cell_22"></td><td><input name="r8c2" type="text" id="cell_23"></td><td><input name="r8c3" type="text" id="cell_24"></td></tr>
         <tr><td style="text-align: right">9 <input name="r9c1" type="text" id="cell_25"></td><td><input name="r9c2" type="text" id="cell_26"></td><td><input name="r9c3" type="text" id="cell_27"></td></tr>
         <tr><td>10 <input name="r10c1" type="text" id="cell_28"></td><td><input name="r10c2" type="text" id="cell_29"></td><td><input name="r10c3" type="text" id="cell_30"></td></tr>
-        <tr><td>11 <input name="r11c1" type="text" id="cell_31"></td><td><input name="r11c2" type="text" id="cell_32"></td><td><input name="r11c3" type="text" id="cell_33"></td></tr>
+        <tr><td style="text-align: right">11 <input name="r11c1" type="text" id="cell_31"></td><td><input name="r11c2" type="text" id="cell_32"></td><td><input name="r11c3" type="text" id="cell_33"></td></tr>
         <tr><td>12 <input name="r12c1" type="text" id="cell_34"></td><td><input name="r12c2" type="text" id="cell_35"></td><td><input name="r12c3" type="text" id="cell_36"></td></tr>
         <tr><td>13 <input name="r13c1" type="text" id="cell_37"></td><td><input name="r13c2" type="text" id="cell_38"></td><td><input name="r13c3" type="text" id="cell_39"></td></tr>
         <tr><td>14 <input name="r14c1" type="text" id="cell_40"></td><td><input name="r14c2" type="text" id="cell_41"></td><td><input name="r14c3" type="text" id="cell_42"></td></tr>
