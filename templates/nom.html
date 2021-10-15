@@ -26,6 +26,7 @@ body {background-color: black; color: gray; line-height: 15px}
 <h2><u>Results</u></h2>
 <h3 style="font-weight:normal"><u>Test</u>: {{ TEST_NAME }} Break-Apart FISH Probe</h3>
 <h3 style="font-weight:normal"><u>Total Counted</u>: {{ add }}</h3>
+<h3 style="font-weight:normal"><u>Case Number</u>: {{ case_number }}</h3>
 <h3 style="font-weight:normal;line-height: 15px" class="space"><u>ISCN Nomenclature</u></h3>
 {% if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == 'MYC' or TEST_NAME == 'BCL2' or TEST_NAME == 'BCL6' or TEST_NAME == 'RET' or TEST_NAME == 'EWSR1' or TEST_NAME == 'SYT' %}
 <h3 id="nomen" style="font-weight:normal" class="space">{{ Nom | safe }}</h3><button onclick="copyToClipboard('#nomen')">Copy</button>
