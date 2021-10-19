@@ -129,12 +129,13 @@ def nomenc():
     global non_fused_perc
     global plotly_plot
     global case_number
+    global Nom_main
 
     # parsing the test name stored in sessions earlier
     TEST_NAME = session['TEST_NAME']
 
     if request.method == "POST":
-        case_number = request.form['case_number']
+        case_number = '<span style="color:white">' + request.form['case_number'] + '</span>'
         cols = ['Red', 'Green', 'Yellow']
         rows = []
         for i in request.form:
@@ -423,77 +424,79 @@ def nomenc():
         d = a_sorted_keys[3]
 
         if a == "split":
-            nom1 = '<p style="display:inline-block;color:white">' + splt + "</p>"
+            nom1 = '<span style="display:inline-block;color:white">' + splt + "</span>"
         elif a == "fused":
-            nom1 = '<p style="display:inline-block;color:orange">' + fsd + "</p>"
+            nom1 = '<span style="display:inline-block;color:orange">' + fsd + "</span>"
         elif a == "isolated5":
             if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
-                nom1 = '<p style="display:inline-block;color:green">' + iso5 + "</p>"
+                nom1 = '<span style="display:inline-block;color:green">' + iso5 + "</span>"
             else:
-                nom1 = '<p style="display:inline-block;color:red">' + iso5 + "</p>"
+                nom1 = '<span style="display:inline-block;color:red">' + iso5 + "</span>"
         elif a == "isolated3":
             if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
-                nom1 = '<p style="display:inline-block;color:red">' + iso3 + "</p>"
+                nom1 = '<span style="display:inline-block;color:red">' + iso3 + "</span>"
             else:
-                nom1 = '<p style="display:inline-block;color:green">' + iso3 + "</p>"
+                nom1 = '<span style="display:inline-block;color:green">' + iso3 + "</span>"
 
         if b == "split":
-            nom2 = '<p style="display:inline-block;color:white">' + splt + "</p>"
+            nom2 = '<span style="display:inline-block;color:white">' + splt + "</span>"
         elif b == "fused":
-            nom2 = '<p style="display:inline-block;color:orange">' + fsd + "</p>"
+            nom2 = '<span style="display:inline-block;color:orange">' + fsd + "</span>"
         elif b == "isolated5":
             if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
-                nom2 = '<p style="display:inline-block;color:green">' + iso5 + "</p>"
+                nom2 = '<span style="display:inline-block;color:green">' + iso5 + "</span>"
             else:
-                nom2 = '<p style="display:inline-block;color:red">' + iso5 + "</p>"
+                nom2 = '<span style="display:inline-block;color:red">' + iso5 + "</span>"
         elif b == "isolated3":
             if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
-                nom2 = '<p style="display:inline-block;color:red">' + iso3 + "</p>"
+                nom2 = '<span style="display:inline-block;color:red">' + iso3 + "</span>"
             else:
-                nom2 = '<p style="display:inline-block;color:green">' + iso3 + "</p>"
+                nom2 = '<span style="display:inline-block;color:green">' + iso3 + "</span>"
 
         if c == "split":
-            nom3 = '<p style="display:inline-block;color:white">' + splt + "</p>"
+            nom3 = '<span style="display:inline-block;color:white">' + splt + "</span>"
         elif c == "fused":
-            nom3 = '<p style="display:inline-block;color:orange">' + fsd + "</p>"
+            nom3 = '<span style="display:inline-block;color:orange">' + fsd + "</span>"
         elif c == "isolated5":
             if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
-                nom3 = '<p style="display:inline-block;color:green">' + iso5 + "</p>"
+                nom3 = '<span style="display:inline-block;color:green">' + iso5 + "</span>"
             else:
-                nom3 = '<p style="display:inline-block;color:red">' + iso5 + "</p>"
+                nom3 = '<span style="display:inline-block;color:red">' + iso5 + "</span>"
         elif c == "isolated3":
             if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
-                nom3 = '<p style="display:inline-block;color:red">' + iso3 + "</p>"
+                nom3 = '<span style="display:inline-block;color:red">' + iso3 + "</span>"
             else:
-                nom3 = '<p style="display:inline-block;color:green">' + iso3 + "</p>"
+                nom3 = '<span style="display:inline-block;color:green">' + iso3 + "</span>"
 
         if d == "split":
-            nom4 = '<p style="display:inline-block;color:white">' + splt + "</p>"
+            nom4 = '<span style="display:inline-block;color:white">' + splt + "</span>"
         elif d == "fused":
-            nom4 = '<p style="display:inline-block;color:orange">' + fsd + "</p>"
+            nom4 = '<span style="display:inline-block;color:orange">' + fsd + "</span>"
         elif d == "isolated5":
             if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
-                nom4 = '<p style="display:inline-block;color:green">' + iso5 + "</p>"
+                nom4 = '<span style="display:inline-block;color:green">' + iso5 + "</span>"
             else:
-                nom4 = '<p style="display:inline-block;color:red">' + iso5 + "</p>"
+                nom4 = '<span style="display:inline-block;color:red">' + iso5 + "</span>"
         elif d == "isolated3":
             if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
-                nom4 = '<p style="display:inline-block;color:red">' + iso3 + "</p>"
+                nom4 = '<span style="display:inline-block;color:red">' + iso3 + "</span>"
             else:
-                nom4 = '<p style="display:inline-block;color:green">' + iso3 + "</p>"
+                nom4 = '<span style="display:inline-block;color:green">' + iso3 + "</span>"
 
         # adding all the nomenclature strings together and removing extra "/" for unused nom strings
         nom = "nuc ish"
-        if nom1 == '<p style="display:inline-block;color:red"></p>' or nom1 == '<p style="display:inline-block;color:green"></p>' or nom1 == '<p style="display:inline-block;color:orange"></p>' or nom1 == '<p style="display:inline-block;color:white"></p>':
+        if nom1 == '<span style="display:inline-block;color:red"></span>' or nom1 == '<span style="display:inline-block;color:green"></p>' or nom1 == '<span style="display:inline-block;color:orange"></span>' or nom1 == '<span style="display:inline-block;color:white"></span>':
             Nom = nom
-        elif nom2 == '<p style="display:inline-block;color:red"></p>' or nom2 == '<p style="display:inline-block;color:green"></p>' or nom2 == '<p style="display:inline-block;color:orange"></p>' or nom2 == '<p style="display:inline-block;color:white"></p>':
+        elif nom2 == '<span style="display:inline-block;color:red"></span>' or nom2 == '<span style="display:inline-block;color:green"></span>' or nom2 == '<span style="display:inline-block;color:orange"></span>' or nom2 == '<span style="display:inline-block;color:white"></span>':
             Nom = nom + " " + nom1
-        elif nom3 == '<p style="display:inline-block;color:red"></p>' or nom3 == '<p style="display:inline-block;color:green"></p>' or nom3 == '<p style="display:inline-block;color:orange"></p>' or nom3 == '<p style="display:inline-block;color:white"></p>':
+        elif nom3 == '<span style="display:inline-block;color:red"></span>' or nom3 == '<span style="display:inline-block;color:green"></span>' or nom3 == '<span style="display:inline-block;color:orange"></span>' or nom3 == '<span style="display:inline-block;color:white"></span>':
             Nom = nom + " " + nom1 + " / " + nom2
-        elif nom4 == '<p style="display:inline-block;color:red"></p>' or nom4 == '<p style="display:inline-block;color:green"></p>' or nom4 == '<p style="display:inline-block;color:orange"></p>' or nom4 == '<p style="display:inline-block;color:white"></p>':
+        elif nom4 == '<span style="display:inline-block;color:red"></span>' or nom4 == '<span style="display:inline-block;color:green"></span>' or nom4 == '<span style="display:inline-block;color:orange"></span>' or nom4 == '<span style="display:inline-block;color:white"></span>':
             Nom = nom + " " + nom1 + " / " + nom2 + " / " + nom3
         else:
             Nom = nom + " " + nom1 + " / " + nom2 + " / " + nom3 + " / " + nom4
+
+        Nom_main = nom + " " + nom1
 
         # Cut-off for different tests
         cut_off = ['ROS1', 'ALK', 'RET', 'SYT', 'BCL2', 'BCL6', 'EWSR1', 'FKHR', 'MYC', 'NTRK1', 'NTRK3', 'GENE_RED', 'GENE_GREEN']
@@ -520,7 +523,7 @@ def nomenc():
                            nom3=nom3, nom4=nom4, cut=cut, fused_perc=fused_perc, split_perc=split_perc,
                            iso5_perc=iso5_perc, iso3_perc=iso3_perc, non_fused_perc=non_fused_perc,
                            non_fused=non_fused, fsd=fsd, splt=splt, iso3=iso3, iso5=iso5, plotly_plot=plotly_plot,
-                           case_number=case_number)
+                           case_number=case_number, Nom_main=Nom_main)
 
 
 if __name__ == "__main__":
