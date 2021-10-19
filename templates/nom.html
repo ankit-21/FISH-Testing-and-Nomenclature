@@ -26,16 +26,18 @@ body {background-color: black; color: gray; line-height: 15px}
 <h2><u>Results</u></h2>
 <h3 style="font-weight:normal"><u>Test</u>: {{ TEST_NAME }} Break-Apart FISH Probe</h3>
 <h3 style="font-weight:normal"><u>Total Counted</u>: {{ add }}</h3>
-<h3 style="font-weight:normal"><u>Case Number</u>: {{ case_number }}</h3>
-<h3 style="font-weight:normal;line-height: 15px" class="space"><u>ISCN Nomenclature</u></h3>
+<h3 style="font-weight:normal"><u>Case Number</u>: {{ case_number | safe }}</h3>
+<h3 style="font-weight:normal"><u>ISCN Nomenclature</u></h3>
 {% if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == 'MYC' or TEST_NAME == 'BCL2' or TEST_NAME == 'BCL6' or TEST_NAME == 'RET' or TEST_NAME == 'EWSR1' or TEST_NAME == 'SYT' %}
-<h3 id="nomen" style="font-weight:normal" class="space">{{ Nom | safe }}</h3><button onclick="copyToClipboard('#nomen')">Copy</button>
+<h3 id="nomen" style="font-weight:normal">{{ Nom | safe }}</h3><button onclick="copyToClipboard('#nomen')">Copy All</button>
+<h3 id="nomen1" style="display:none;margin-bottom:25px">{{ Nom_main | safe }}</h3><button style="margin-bottom:25px" onclick="copyToClipboard('#nomen1')">Copy Main</button>
 {% endif %}
 {% if TEST_NAME == 'GENE_RED' or TEST_NAME == 'GENE_GREEN' %}
-<h3 id="nomen" style="font-weight:normal;line-height: 15px" contenteditable="true" class="space">{{ Nom | safe }}</h3><button onclick="copyToClipboard('#nomen')">Copy</button>
+<h3 id="nomen" style="font-weight:normal" contenteditable="true">{{ Nom | safe }}</h3><button onclick="copyToClipboard('#nomen')">Copy All</button>
+<h3 id="nomen1" style="display:none;margin-bottom:25px" contenteditable="true">{{ Nom_main | safe }}</h3><button style="margin-bottom:25px" onclick="copyToClipboard('#nomen1')">Copy Main</button>
 {% endif %}
 <div class="chart" id="bargraph" style="position:absolute;right:50px"></div>
-<h3 style="font-weight:normal;margin:1"><u>Nomenclature Breakdown</u></h3>
+<h3 style="font-weight:normal" class="space"><u>Nomenclature Breakdown</u></h3>
 {% if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == 'GENE_GREEN' %}
 <h3 style="display:inline-block;color:orange" class="space">FUSED</h3>
 <h3 style="display:inline-block">{{ fused_perc }}%</h3>
@@ -47,7 +49,7 @@ body {background-color: black; color: gray; line-height: 15px}
 <!--<hr>-->
 <h3 style="display:inline-block;margin-left:40px;color:white" class="space">SPLIT</h3>
 <h3 style="display:inline-block">{{ split_perc }}%</h3>
-<h3 style="font-weight:normal;margin-left:40px;color:white" class="space" id="splt">{{ splt | safe }}</h3>
+<h3 style="font-weight:normal;margin-left:40px;color:white" id="splt" class="space">{{ splt | safe }}</h3>
 <!--<hr>-->
 <h3 style="display:inline-block;color:green;margin-left:40px" class="space">ISOLATED 5'</h3>
 <h3 style="display:inline-block">{{ iso5_perc }}%</h3>
@@ -55,7 +57,7 @@ body {background-color: black; color: gray; line-height: 15px}
 <!--<hr>-->
 <h3 style="display:inline-block;color:red;margin-left:40px" class="space">ISOLATED 3'</h3>
 <h3 style="display:inline-block">{{ iso3_perc }}%</h3>
-<h3 style="font-weight:normal;margin-left:40px;color:red" class="space" id="iso3">{{ iso3 | safe }}</h3>
+<h3 style="font-weight:normal;margin-left:40px;color:red" id="iso3" class="space">{{ iso3 | safe }}</h3>
 <hr>
 {% endif %}
 {% if TEST_NAME == 'MYC' or TEST_NAME == 'BCL2' or TEST_NAME == 'BCL6' or TEST_NAME == 'RET' or TEST_NAME == 'EWSR1' or TEST_NAME == 'SYT' or TEST_NAME == 'GENE_RED' %}
@@ -69,15 +71,15 @@ body {background-color: black; color: gray; line-height: 15px}
 <!--<hr>-->
 <h3 style="display:inline-block;margin-left:40px;color:white" class="space">SPLIT</h3>
 <h3 style="display:inline-block">{{ split_perc }}%</h3>
-<h3 style="font-weight:normal;margin-left:40px;color:white" class="space" id="splt">{{ splt | safe }}</h3>
+<h3 style="font-weight:normal;margin-left:40px;color:white" id="splt" class="space">{{ splt | safe }}</h3>
 <!--<hr>-->
 <h3 style="display:inline-block;color:red;margin-left:40px" class="space">ISOLATED 5'</h3>
 <h3 style="display:inline-block">{{ iso5_perc }}%</h3>
-<h3 style="font-weight:normal;margin-left:40px;color:red" class="space" id="iso5">{{ iso5 | safe }}</h3>
+<h3 style="font-weight:normal;margin-left:40px;color:red" id="iso5" class="space">{{ iso5 | safe }}</h3>
 <!--<hr>-->
 <h3 style="display:inline-block;color:green;margin-left:40px" class="space">ISOLATED 3'</h3>
 <h3 style="display:inline-block">{{ iso3_perc }}%</h3>
-<h3 style="font-weight:normal;margin-left:40px;color:green" class="space" id="iso3">{{ iso3 | safe }}</h3>
+<h3 style="font-weight:normal;margin-left:40px;color:green" id="iso3" class="space">{{ iso3 | safe }}</h3>
 <hr>
 {% endif %}
 <h3 style="font-weight:normal"><u>FISH Result</u> (as string; format is R,G,Y;R,G,Y;..)</h3>
