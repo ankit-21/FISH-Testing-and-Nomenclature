@@ -498,7 +498,7 @@ def nomenc():
 
         if non_fused_perc < 15:
             Nom_main = nom + " " + nom1
-        elif non_fused_perc > 15 and (a == 'split' or a == 'isolate5' or a == 'isolated3'):
+        elif non_fused_perc >= 15 and (a == 'split' or a == 'isolate5' or a == 'isolated3'):
             Nom_main = nom + " " + nom1
         else:
             Nom_main = nom + " " + nom2
