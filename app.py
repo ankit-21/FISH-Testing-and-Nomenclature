@@ -428,12 +428,12 @@ def nomenc():
         elif a == "fused":
             nom1 = '<span style="display:inline-block;color:orange">' + fsd + "</span>"
         elif a == "isolated5":
-            if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
+            if TEST_NAME in iso5_green:
                 nom1 = '<span style="display:inline-block;color:green">' + iso5 + "</span>"
             else:
                 nom1 = '<span style="display:inline-block;color:red">' + iso5 + "</span>"
         elif a == "isolated3":
-            if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
+            if TEST_NAME in iso5_green:
                 nom1 = '<span style="display:inline-block;color:red">' + iso3 + "</span>"
             else:
                 nom1 = '<span style="display:inline-block;color:green">' + iso3 + "</span>"
@@ -443,12 +443,12 @@ def nomenc():
         elif b == "fused":
             nom2 = '<span style="display:inline-block;color:orange">' + fsd + "</span>"
         elif b == "isolated5":
-            if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
+            if TEST_NAME in iso5_green:
                 nom2 = '<span style="display:inline-block;color:green">' + iso5 + "</span>"
             else:
                 nom2 = '<span style="display:inline-block;color:red">' + iso5 + "</span>"
         elif b == "isolated3":
-            if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
+            if TEST_NAME in iso5_green:
                 nom2 = '<span style="display:inline-block;color:red">' + iso3 + "</span>"
             else:
                 nom2 = '<span style="display:inline-block;color:green">' + iso3 + "</span>"
@@ -458,12 +458,12 @@ def nomenc():
         elif c == "fused":
             nom3 = '<span style="display:inline-block;color:orange">' + fsd + "</span>"
         elif c == "isolated5":
-            if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
+            if TEST_NAME in iso5_green:
                 nom3 = '<span style="display:inline-block;color:green">' + iso5 + "</span>"
             else:
                 nom3 = '<span style="display:inline-block;color:red">' + iso5 + "</span>"
         elif c == "isolated3":
-            if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
+            if TEST_NAME in iso5_green:
                 nom3 = '<span style="display:inline-block;color:red">' + iso3 + "</span>"
             else:
                 nom3 = '<span style="display:inline-block;color:green">' + iso3 + "</span>"
@@ -473,12 +473,12 @@ def nomenc():
         elif d == "fused":
             nom4 = '<span style="display:inline-block;color:orange">' + fsd + "</span>"
         elif d == "isolated5":
-            if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
+            if TEST_NAME in iso5_green:
                 nom4 = '<span style="display:inline-block;color:green">' + iso5 + "</span>"
             else:
                 nom4 = '<span style="display:inline-block;color:red">' + iso5 + "</span>"
         elif d == "isolated3":
-            if TEST_NAME == 'ROS1' or TEST_NAME == 'ALK' or TEST_NAME == 'CHOP' or TEST_NAME == 'FKHR' or TEST_NAME == 'NTRK1' or TEST_NAME == 'NTRK3' or TEST_NAME == "GENE_GREEN":
+            if TEST_NAME in iso5_green:
                 nom4 = '<span style="display:inline-block;color:red">' + iso3 + "</span>"
             else:
                 nom4 = '<span style="display:inline-block;color:green">' + iso3 + "</span>"
@@ -496,7 +496,12 @@ def nomenc():
         else:
             Nom = nom + " " + nom1 + " / " + nom2 + " / " + nom3 + " / " + nom4
 
-        Nom_main = nom + " " + nom1
+        if non_fused_perc < 15:
+            Nom_main = nom + " " + nom1
+        elif non_fused_perc > 15 and (a == 'split' or a == 'isolate5' or a == 'isolated3'):
+            Nom_main = nom + " " + nom1
+        else:
+            Nom_main = nom + " " + nom2
 
         # Cut-off for different tests
         cut_off = ['ROS1', 'ALK', 'RET', 'SYT', 'BCL2', 'BCL6', 'EWSR1', 'FKHR', 'MYC', 'NTRK1', 'NTRK3', 'GENE_RED', 'GENE_GREEN']
