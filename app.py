@@ -498,10 +498,11 @@ def nomenc():
 
         if non_fused_perc < 15:
             Nom_main = nom + " " + nom1
-        elif non_fused_perc >= 15 and (a == 'split' or a == 'isolate5' or a == 'isolated3'):
-            Nom_main = nom + " " + nom1
-        else:
-            Nom_main = nom + " " + nom2
+        elif non_fused_perc >= 15:
+            if a == 'fused': 
+                Nom_main = nom + " " + nom2
+            else:
+                Nom_main = nom + " " + nom1
 
         # Cut-off for different tests
         cut_off = ['ROS1', 'ALK', 'RET', 'SYT', 'BCL2', 'BCL6', 'EWSR1', 'FKHR', 'MYC', 'NTRK1', 'NTRK3', 'GENE_RED', 'GENE_GREEN']
