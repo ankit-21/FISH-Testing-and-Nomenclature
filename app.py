@@ -51,7 +51,7 @@ def fish_sankey(
               f"{isolated5}/{add} ({iso5_perc}%)"]
 
     # set colors for nodes
-    color = ["black", "blue", "orange", "white", iso3_color, iso5_color]
+    color = ["black", "blue", "#ECFF33", "white", iso3_color, iso5_color]
 
 
     #  %% Draw the Sankey
@@ -426,7 +426,7 @@ def nomenc():
         if a == "split":
             nom1 = '<span style="display:inline-block;color:white">' + splt + "</span>"
         elif a == "fused":
-            nom1 = '<span style="display:inline-block;color:orange">' + fsd + "</span>"
+            nom1 = '<span style="display:inline-block;color:#ECFF33">' + fsd + "</span>"
         elif a == "isolated5":
             if TEST_NAME in iso5_green:
                 nom1 = '<span style="display:inline-block;color:green">' + iso5 + "</span>"
@@ -441,7 +441,7 @@ def nomenc():
         if b == "split":
             nom2 = '<span style="display:inline-block;color:white">' + splt + "</span>"
         elif b == "fused":
-            nom2 = '<span style="display:inline-block;color:orange">' + fsd + "</span>"
+            nom2 = '<span style="display:inline-block;color:#ECFF33">' + fsd + "</span>"
         elif b == "isolated5":
             if TEST_NAME in iso5_green:
                 nom2 = '<span style="display:inline-block;color:green">' + iso5 + "</span>"
@@ -456,7 +456,7 @@ def nomenc():
         if c == "split":
             nom3 = '<span style="display:inline-block;color:white">' + splt + "</span>"
         elif c == "fused":
-            nom3 = '<span style="display:inline-block;color:orange">' + fsd + "</span>"
+            nom3 = '<span style="display:inline-block;color:#ECFF33">' + fsd + "</span>"
         elif c == "isolated5":
             if TEST_NAME in iso5_green:
                 nom3 = '<span style="display:inline-block;color:green">' + iso5 + "</span>"
@@ -471,7 +471,7 @@ def nomenc():
         if d == "split":
             nom4 = '<span style="display:inline-block;color:white">' + splt + "</span>"
         elif d == "fused":
-            nom4 = '<span style="display:inline-block;color:orange">' + fsd + "</span>"
+            nom4 = '<span style="display:inline-block;color:#ECFF33">' + fsd + "</span>"
         elif d == "isolated5":
             if TEST_NAME in iso5_green:
                 nom4 = '<span style="display:inline-block;color:green">' + iso5 + "</span>"
@@ -485,13 +485,13 @@ def nomenc():
 
         # adding all the nomenclature strings together and removing extra "/" for unused nom strings
         nom = "nuc ish"
-        if nom1 == '<span style="display:inline-block;color:red"></span>' or nom1 == '<span style="display:inline-block;color:green"></p>' or nom1 == '<span style="display:inline-block;color:orange"></span>' or nom1 == '<span style="display:inline-block;color:white"></span>':
+        if nom1 == '<span style="display:inline-block;color:red"></span>' or nom1 == '<span style="display:inline-block;color:green"></p>' or nom1 == '<span style="display:inline-block;color:#ECFF33"></span>' or nom1 == '<span style="display:inline-block;color:white"></span>':
             Nom = nom
-        elif nom2 == '<span style="display:inline-block;color:red"></span>' or nom2 == '<span style="display:inline-block;color:green"></span>' or nom2 == '<span style="display:inline-block;color:orange"></span>' or nom2 == '<span style="display:inline-block;color:white"></span>':
+        elif nom2 == '<span style="display:inline-block;color:red"></span>' or nom2 == '<span style="display:inline-block;color:green"></span>' or nom2 == '<span style="display:inline-block;color:#ECFF33"></span>' or nom2 == '<span style="display:inline-block;color:white"></span>':
             Nom = nom + " " + nom1
-        elif nom3 == '<span style="display:inline-block;color:red"></span>' or nom3 == '<span style="display:inline-block;color:green"></span>' or nom3 == '<span style="display:inline-block;color:orange"></span>' or nom3 == '<span style="display:inline-block;color:white"></span>':
+        elif nom3 == '<span style="display:inline-block;color:red"></span>' or nom3 == '<span style="display:inline-block;color:green"></span>' or nom3 == '<span style="display:inline-block;color:#ECFF33"></span>' or nom3 == '<span style="display:inline-block;color:white"></span>':
             Nom = nom + " " + nom1 + " / " + nom2
-        elif nom4 == '<span style="display:inline-block;color:red"></span>' or nom4 == '<span style="display:inline-block;color:green"></span>' or nom4 == '<span style="display:inline-block;color:orange"></span>' or nom4 == '<span style="display:inline-block;color:white"></span>':
+        elif nom4 == '<span style="display:inline-block;color:red"></span>' or nom4 == '<span style="display:inline-block;color:green"></span>' or nom4 == '<span style="display:inline-block;color:#ECFF33"></span>' or nom4 == '<span style="display:inline-block;color:white"></span>':
             Nom = nom + " " + nom1 + " / " + nom2 + " / " + nom3
         else:
             Nom = nom + " " + nom1 + " / " + nom2 + " / " + nom3 + " / " + nom4
@@ -499,7 +499,7 @@ def nomenc():
         if non_fused_perc < 15:
             Nom_main = nom + " " + nom1
         elif non_fused_perc >= 15:
-            if a == 'fused': 
+            if a == 'fused':
                 Nom_main = nom + " " + nom2
             else:
                 Nom_main = nom + " " + nom1
